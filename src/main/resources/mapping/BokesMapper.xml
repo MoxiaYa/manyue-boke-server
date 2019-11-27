@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.BokesMapper">
+
+    <select id="SelEnabled" resultType="com.example.demo.bean.Boke">
+        select * from bokes where is_enabled = 1
+    </select>
+ 	
+ 	<insert id="add">
+ 		insert into bokes (title,sim_content,content,author,watch_num,create_time,is_enabled) values (#{title},#{sim_content},#{content},#{author},#{watch_num},#{create_time},#{is_enabled})
+ 	</insert>
+
+    <select id="SelAll" resultType="com.example.demo.bean.Boke">
+        select * from bokes
+    </select>
+
+    <delete id="delMore"  parameterType = "java.util.List">
+        delete from bokes where id in <foreach collection="list"  item="item" open="(" separator="," close=")"  >#{item}</foreach>
+    </delete>
+
+    <delete id="del">
+        delete from bokes where id = #{id}
+    </delete>
+
+    <update id="editEnabled">
+        update bokes set is_enabled = #{is_enabled} where id = #{id}
+    </update>
+
+    <update id="update" parameterType="com.example.demo.bean.Boke">
+        update bokes set title = #{title} , sim_content = #{sim_content} , content = #{content} , author = #{author} , is_enabled = #{is_enabled} where id = #{id}
+    </update>
+
+    <select id="selByTitle" resultType="com.example.demo.bean.Boke">
+        SELECT DISTINCT * from bokes WHERE LOCATE(#{title},title)
+    </select>
+
+    <select id="selById" resultType="com.example.demo.bean.Boke">
+        select * from bokes where id = #{id} and is_enabled = 1
+    </select>
+
+ 	
+</mapper>

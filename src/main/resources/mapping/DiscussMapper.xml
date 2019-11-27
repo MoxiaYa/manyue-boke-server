@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.DiscussMapper">
+
+    <select id="selByBoke" resultType="com.example.demo.bean.Discuss">
+        SELECT
+            discuss.id,
+            discuss.boke_id,
+            discuss.account_id,
+            discuss.text,
+            discuss.to_account_id,
+            a.`name` as 'account_name',
+            a.`avatar` as 'account_avatar',
+            b.`name` as 'to_account_name',
+            b.`avatar` as 'to_account_avatar'
+            FROM
+            discuss
+            INNER JOIN account a ON discuss.account_id = a.id
+            LEFT JOIN account b ON discuss.to_account_id = b.id
+            where discuss.boke_id = #{id}
+            ORDER BY discuss.id ASC
+    </select>
+    
+    <insert id="addDiscuss" parameterType="com.example.demo.bean.Discuss">
+        insert into discuss (boke_id,account_id,text,to_account_id) values (#{boke_id},#{account_id},#{text},#{to_account_id})
+    </insert>
+
+    <delete id="delDiscuss">
+        delete from discuss where id = #{id}
+    </delete>
+
+ 	
+</mapper>
