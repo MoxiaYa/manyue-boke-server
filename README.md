@@ -3,7 +3,9 @@
 - springboot
 - mybatis
 ## 如何运行
-直接运行DemoApplication即可
+1. 导入项目到IDEA或者Eclipse中
+2. 下载依赖
+3. 直接运行DemoApplication即可
 
 ## 后台接口响应规范
 ### code
