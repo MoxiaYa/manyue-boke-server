@@ -1,3 +1,10 @@
+# 个人博客系统后台代码
+## 技术栈:
+- springboot
+- mybatis
+## 如何运行
+直接运行DemoApplication即可
+
 ## 后台接口响应规范
 ### code
 - 200 : 正常
